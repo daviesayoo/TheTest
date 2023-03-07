@@ -70,23 +70,10 @@ function App() {
           </div>
         </nav>
 
-        <div className="content">
-          {/* {isMenuOpen && (
-            <aside className="menu">
-              <ul>
-                <li>
-                  <Link to="/page1">
-                    <FaHome />
-
-                    </Link> */}
-
-          </div>
-
-
         </div>
         
 
-    </Router>
+              </Router>
 )};
 
 export default App;
