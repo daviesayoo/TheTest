@@ -80,7 +80,10 @@ function App() {
         <div>
 
         <div className="content"> 
-              {isMenuOpen && ( <aside className="menu"> <ul> <li> <Link to="/page1"> <FaHome /> {isMenuOpen}  
+              {isMenuOpen && ( 
+                  <aside className="menu"> 
+              <ul> 
+                <li> <Link to="/page1"> <FaHome /> {isMenuOpen} </Link>  </li> </ul> </aside> )}
 
         </div>
 
