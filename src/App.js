@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from "react";
+import { FaHome, FaCog, FaCode, FaLightbulb, FaMoon } from "react-icons/fa";
 
 function App() {
   const [menuCollapsed, setMenuCollapsed] = useState(false);

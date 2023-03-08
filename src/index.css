@@ -16,3 +16,12 @@ code {
 .app {
   text-align: center;
 }
+
+li {
+  text-align: center;
+  text-decoration: none;
+}
+
+ul {
+  text-decoration: none;
+}
