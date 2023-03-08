@@ -17,11 +17,7 @@ code {
   text-align: center;
 }
 
-li {
-  text-align: center;
-  text-decoration: none;
-}
-
-ul {
-  text-decoration: none;
+ul, li {
+  list-style-type: none;
+  text-decoration: underline;
 }
