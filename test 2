@@ -1,0 +1,76 @@
+import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars, faCog, faMoon, faSun, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faComment, faHandPointRight } from '@fortawesome/free-regular-svg-icons';
+import './App.css';
+
+function App() {
+  const [isMenuCollapsed, setIsMenuCollapsed] = useState(localStorage.getItem('isMenuCollapsed') === 'true' || false);
+  const [theme, setTheme] = useState('light');
+  const [textAreaValue, setTextAreaValue] = useState('');
+  const [buttonCount, setButtonCount] = useState(0);
+  const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+    localStorage.setItem('isMenuCollapsed', isMenuCollapsed);
+  }, [isMenuCollapsed]);
+
+  const toggleMenu = () => {
+    setIsMenuCollapsed(!isMenuCollapsed);
+  };
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+    setMessages(prevMessages => [...prevMessages, `Theme was set to ${newTheme.charAt(0).toUpperCase() + newTheme.slice(1)}`]);
+  };
+
+  const handleTextAreaChange = (event) => {
+    setTextAreaValue(event.target.value);
+  };
+
+  const handleSendButtonClick = () => {
+    setMessages(prevMessages => [...prevMessages, `Message Sent: ${textAreaValue}`]);
+    setTextAreaValue('');
+  };
+
+  const handleAddButtonClick = () => {
+    const newButtonCount = buttonCount + 1;
+    setButtonCount(newButtonCount);
+    setMessages(prevMessages => [...prevMessages, `Button ${newButtonCount} added`]);
+  };
+
+  const handleButtonClick = (buttonNumber) => {
+    setMessages(prevMessages => [...prevMessages, `Button ${buttonNumber} clicked`]);
+  };
+
+  const menuIcon = isMenuCollapsed ? faBars : faCog;
+  const menuTooltip = isMenuCollapsed ? 'Expand menu' : 'Collapse menu';
+  const menuItems = [
+    { name: 'Page 1', link: 'https://www.example.com/page1', icon: faComment },
+    { name: 'Page 2', link: 'https://www.example.com/page2', icon: faEnvelope },
+  ];
+  const menuClass = `menu ${isMenuCollapsed ? 'collapsed' : ''}`;
+  const contentClass = `content ${isMenuCollapsed ? 'expanded' : ''} ${theme}-theme`;
+
+  return (
+    <div className="App">
+      <div className={`top-bar ${theme}-theme`}>
+        <button className="menu-button" onClick={toggleMenu}>
+          <FontAwesomeIcon icon={menuIcon} />
+          <span className="sr-only">{menuTooltip}</span>
+        </button>
+        <h1>Pioneering Programmers Test App</h1>
+      </div>
+      <div className={menuClass}>
+        {menuItems.map(({ name, link, icon }) => (
+          <a key={name} href={link} target="_blank" rel="noopener noreferrer" className="menu-item">
+            <FontAwesomeIcon icon={icon} />
+            <span className="menu-text">{!isMenuCollapsed && name}</span>
+          </a>
+        ))}
+      </div>
+      <div className={contentClass}>
+        <div className="left-panel">
+          <button className="theme-button" onClick={toggleTheme}>
+            <FontAwesomeIcon icon={theme === 'light' ? faMoon : fa

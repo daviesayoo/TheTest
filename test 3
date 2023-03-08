@@ -1,0 +1,99 @@
+import React, { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faListAlt } from "@fortawesome/free-solid-svg-icons";
+
+function App() {
+  const [isMenuOpen, setIsMenuOpen] = useState(
+    localStorage.getItem("isMenuOpen") === "true" || false
+  );
+  const [isDarkTheme, setIsDarkTheme] = useState(
+    localStorage.getItem("isDarkTheme") === "true" || false
+  );
+  const [textAreaValue, setTextAreaValue] = useState("");
+  const [buttonCount, setButtonCount] = useState(0);
+  const [actions, setActions] = useState([]);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const toggleTheme = () => {
+    const newTheme = !isDarkTheme;
+    setIsDarkTheme(newTheme);
+    localStorage.setItem("isDarkTheme", newTheme);
+    setActions([
+      ...actions,
+      {
+        date: new Date().toLocaleString(),
+        action: `Theme was set to ${newTheme ? "Dark" : "Light"}`,
+      },
+    ]);
+  };
+
+  const handleTextAreaChange = (event) => {
+    setTextAreaValue(event.target.value);
+  };
+
+  const handleSendMessage = () => {
+    setActions([
+      ...actions,
+      {
+        date: new Date().toLocaleString(),
+        action: `Message Sent: ${textAreaValue}`,
+      },
+    ]);
+    setTextAreaValue("");
+  };
+
+  const handleAddButton = () => {
+    const newButtonCount = buttonCount + 1;
+    setButtonCount(newButtonCount);
+    setActions([
+      ...actions,
+      {
+        date: new Date().toLocaleString(),
+        action: `Button ${newButtonCount} added`,
+      },
+    ]);
+  };
+
+  const handleButtonClick = (buttonNumber) => {
+    setActions([
+      ...actions,
+      {
+        date: new Date().toLocaleString(),
+        action: `Button ${buttonNumber} clicked`,
+      },
+    ]);
+  };
+
+  useEffect(() => {
+    localStorage.setItem("isMenuOpen", isMenuOpen);
+  }, [isMenuOpen]);
+
+  const menuClassName = `menu ${isMenuOpen ? "" : "collapsed"}`;
+  const pageClassName = `page ${isMenuOpen ? "" : "full"}`;
+  const topBarStyle = {
+    backgroundColor: isDarkTheme ? "#c0c0c0" : "#808080",
+    color: isDarkTheme ? "#2f4f4f" : "#ff0",
+  };
+  const buttonStyle = {
+    backgroundColor: isDarkTheme ? "#f0f8ff" : "#cc0000",
+    color: isDarkTheme ? "#800080" : "white",
+  };
+  const leftPanelStyle = {
+    backgroundColor: isDarkTheme ? "white" : "#cecece",
+    color: isDarkTheme ? "#696969" : "#2f4f4f",
+  };
+  const rightPanelStyle = {
+    backgroundColor: isDarkTheme ? "#008080" : "white",
+    color: isDarkTheme ? "white" : "#000000",
+  };
+
+  return (
+    <div className="App">
+      <div className="top-bar" style={topBarStyle}>
+        <button className="menu-toggle" onClick={toggleMenu}>
+          <FontAwesomeIcon icon={faBars} />
+        </button>
+        <h1 className="app-title">Pioneering Program
