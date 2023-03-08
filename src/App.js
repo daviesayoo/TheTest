@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { FaHome, FaCog, FaCode, FaLightbulb, FaMoon } from "react-icons/fa";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
+// import { FaHome, FaCog, FaCode, FaLightbulb, FaMoon } from "react-icons/fa";
 
 function App() {
   const [menuCollapsed, setMenuCollapsed] = useState(false);
@@ -57,6 +59,7 @@ function App() {
   };
 
   return (
+    <Router>
     <div className="app">
       <header>
         <div className="top-bar">
@@ -109,6 +112,7 @@ function App() {
         </div>
       </main>
     </div>
+    </Router>
   );
 }
 
