@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-// import { FaHome, FaCog, FaCode, FaLightbulb, FaMoon } from "react-icons/fa";
 
 function App() {
   const [menuCollapsed, setMenuCollapsed] = useState(false);
@@ -60,71 +60,69 @@ function App() {
 
   return (
     <Router>
-    <div className="app">
-      <header>
-        <div className="top-bar">
-          <h1>Pioneering Programmers Test App</h1>
-          <button className="toggle-menu" onClick={handleToggleMenu}>
-            {menuCollapsed ? (
-              <i className="fas fa-bars" title="Expand Menu"></i>
-            ) : (
-              <i className="fas fa-times" title="Collapse Menu"></i>
-            )}
-          </button>
-        </div>
-        {!menuCollapsed && (
-          <nav>
-            <ul>
-              <li>
-                <a href="#" target="_blank">
-                  <i className="fas fa-home"></i>
-                  <span>Page 1</span>
-                </a>
-              </li>
-              <li>
-                <a href="#" target="_blank">
-                  <i className="fas fa-info"></i>
-                  <span>Page 2</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
-        )}
-      </header>
-      <main>
-        <div className="left-side">
-          <div className="buttons-container">
-            <button className="toggle-theme" onClick={handleToggleTheme}>
-              {theme === "light" ? "Set Dark Theme" : "Set Light Theme"}
+      <div className="app">
+        <header>
+          <div className="top-bar">
+            <h1>Pioneering Programmers Test App</h1>
+            <button className="toggle-menu" onClick={handleToggleMenu}>
+              {menuCollapsed ? (
+                <i className="fas fa-bars" title="Expand Menu"></i>
+              ) : (
+                <i className="fas fa-times" title="Collapse Menu"></i>
+              )}
             </button>
-            <button className="add-button" onClick={handleAddButton}>
-              Add Button {buttonCount + 1}
-            </button>
-            {[...Array(buttonCount)].map((_, index) => (
-              <button
-                key={`button-${index + 1}`}
-                onClick={() => handleButtonClick(index + 1)}
-              >
-                Button {index + 1}
-              </button>
-            ))}
           </div>
-        </div>
-      </main>
-    </div>
+          {!menuCollapsed && (
+            <nav>
+              <ul>
+                <li>
+                  <a href="#" target="_blank">
+                    <i className="fas fa-home"></i>
+                    <span>Page 1</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" target="_blank">
+                    <i className="fas fa-info"></i>
+                    <span>Page 2</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          )}
+        </header>
+        <main>
+          <div className="left-side">
+            <div className="buttons-container">
+              <button className="toggle-theme" onClick={handleToggleTheme}>
+                <FontAwesomeIcon icon="fa-regular fa-lightbulb">
+                  {theme === "light" ? "Set Dark Theme" : "Set Light Theme"}
+                </FontAwesomeIcon>
+              </button>
+              <button className="add-button" onClick={handleAddButton}>
+                Add Button {buttonCount + 1}
+              </button>
+              {[...Array(buttonCount)].map((_, index) => (
+                <button
+                  key={`button-${index + 1}`}
+                  onClick={() => handleButtonClick(index + 1)}
+                >
+                  Button {index + 1}
+                </button>
+              ))}
+            </div>
+          </div>
+        </main>
+      </div>
     </Router>
   );
 }
 
 export default App;
 
-
-
 // import React, { useState, useEffect } from "react";
 // import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 // import { FaHome, FaCog, FaCode, FaLightbulb, FaMoon } from "react-icons/fa";
-
-
 
 // function App() {
 //   const [isMenuOpen, setIsMenuOpen] = useState(
